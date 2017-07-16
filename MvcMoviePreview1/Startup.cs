@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using MvcMoviePreview1.Models;
 
 namespace MvcMoviePreview1
 {
@@ -39,11 +42,18 @@ namespace MvcMoviePreview1
                 });
             });
             services.AddResponseCompression();
+
+            services.AddDbContext<MvcMoviePreview1Context>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("MvcMoviePreview1Context")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
+            loggerFactory.AddFile("Logs/ts-{Date}.txt");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
