@@ -1,0 +1,182 @@
+2017-07-17T00:35:01.0367232+01:00  [INF] User profile is available. Using '"C:\Users\vvenkata\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2017-07-17T00:35:01.3165461+01:00 0HL6CKD3J0OVM:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:63577/   (ca22a1cb)
+2017-07-17T00:35:01.4140810+01:00 0HL6CKD3J0OVM:00000001 [INF] Executing action method "MvcMoviePreview1.Controllers.HomeController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T00:35:03.1355496+01:00 0HL6CKD3J0OVM:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-17T00:35:03.5536210+01:00 0HL6CKD3J0OVM:00000001 [INF] Executed action "MvcMoviePreview1.Controllers.HomeController.Index (MvcMoviePreview1)" in 2143.2361ms (afa2e885)
+2017-07-17T00:35:03.5612287+01:00 0HL6CKD3J0OVM:00000001 [INF] Request finished in 2249.6105ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T00:35:07.1041647+01:00 0HL6CKD3J0OVM:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies   (ca22a1cb)
+2017-07-17T00:35:07.2180002+01:00 0HL6CKD3J0OVM:00000002 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T00:35:08.6373362+01:00 0HL6CKD3J0OVM:00000002 [INF] Executed DbCommand ("60"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]" (0723d8ff)
+2017-07-17T00:35:09.0357245+01:00 0HL6CKD3J0OVM:00000002 [INF] Executing ViewResult, running view at path "/Views/Movies/Index.cshtml". (9707eebe)
+2017-07-17T00:35:09.0862028+01:00 0HL6CKD3J0OVM:00000002 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" in 1972.4333ms (afa2e885)
+2017-07-17T00:35:09.0866326+01:00 0HL6CKD3J0OVM:00000002 [INF] Request finished in 1982.5362ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:56:57.2488958+01:00  [INF] User profile is available. Using '"C:\Users\vvenkata\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2017-07-17T22:56:57.5443644+01:00  [INF] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Movie] AS [m])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2017-07-17T22:56:57.6386057+01:00  [INF] Executed DbCommand ("34"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?', @p2='?', @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?', @p6='?', @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?', @p10='?', @p11='?' (Size = 4000), @p12='?' (Size = 4000), @p13='?', @p14='?', @p15='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+DECLARE @toInsert0 TABLE ([Genre] nvarchar(max), [Price] decimal(18, 2), [ReleaseDate] datetime2, [Title] nvarchar(max), [_Position] [int]);
+INSERT INTO @toInsert0
+VALUES (@p0, @p1, @p2, @p3, 0),
+(@p4, @p5, @p6, @p7, 1),
+(@p8, @p9, @p10, @p11, 2),
+(@p12, @p13, @p14, @p15, 3);
+
+DECLARE @inserted0 TABLE ([ID] int, [_Position] [int]);
+MERGE [Movie] USING @toInsert0 AS i ON 1=0
+WHEN NOT MATCHED THEN
+INSERT ([Genre], [Price], [ReleaseDate], [Title])
+VALUES (i.[Genre], i.[Price], i.[ReleaseDate], i.[Title])
+OUTPUT INSERTED.[ID], i._Position
+INTO @inserted0;
+
+SELECT [t].[ID] FROM [Movie] t
+INNER JOIN @inserted0 i ON ([t].[ID] = [i].[ID])
+ORDER BY [i].[_Position];" (0723d8ff)
+2017-07-17T22:56:58.0061384+01:00 0HL6DBQVDL4B7:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:63577/   (ca22a1cb)
+2017-07-17T22:56:58.0828579+01:00 0HL6DBQVDL4B7:00000001 [INF] Executing action method "MvcMoviePreview1.Controllers.HomeController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:57:00.0255169+01:00 0HL6DBQVDL4B7:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-17T22:57:00.3720023+01:00 0HL6DBQVDL4B7:00000001 [INF] Executed action "MvcMoviePreview1.Controllers.HomeController.Index (MvcMoviePreview1)" in 2292.1749ms (afa2e885)
+2017-07-17T22:57:00.3785955+01:00 0HL6DBQVDL4B7:00000001 [INF] Request finished in 2373.6905ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:57:00.3816232+01:00 0HL6DBQVDL4B8:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:63577/css/site.css   (ca22a1cb)
+2017-07-17T22:57:00.3856659+01:00 0HL6DBQVDL4B8:00000001 [INF] Sending file. Request path: '"/css/site.css"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\css\site.css"' (27b0a520)
+2017-07-17T22:57:00.3906505+01:00 0HL6DBQVDL4B7:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:63577/lib/bootstrap/dist/css/bootstrap.css   (ca22a1cb)
+2017-07-17T22:57:00.3915638+01:00 0HL6DBQVDL4B7:00000002 [INF] Sending file. Request path: '"/lib/bootstrap/dist/css/bootstrap.css"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\lib\bootstrap\dist\css\bootstrap.css"' (27b0a520)
+2017-07-17T22:57:00.3989522+01:00 0HL6DBQVDL4B8:00000001 [INF] Request finished in 17.3625ms 200 text/css (791a596a)
+2017-07-17T22:57:00.3997168+01:00 0HL6DBQVDL4B7:00000002 [INF] Request finished in 9.0544ms 200 text/css (791a596a)
+2017-07-17T22:57:00.4051508+01:00 0HL6DBQVDL4B8:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:63577/lib/jquery/dist/jquery.js   (ca22a1cb)
+2017-07-17T22:57:00.4063305+01:00 0HL6DBQVDL4B8:00000002 [INF] Sending file. Request path: '"/lib/jquery/dist/jquery.js"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\lib\jquery\dist\jquery.js"' (27b0a520)
+2017-07-17T22:57:00.4091780+01:00 0HL6DBQVDL4B8:00000002 [INF] Request finished in 4.011ms 200 application/javascript (791a596a)
+2017-07-17T22:57:00.4427631+01:00 0HL6DBQVDL4B7:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:63577/lib/bootstrap/dist/js/bootstrap.js   (ca22a1cb)
+2017-07-17T22:57:00.4434765+01:00 0HL6DBQVDL4B7:00000003 [INF] Sending file. Request path: '"/lib/bootstrap/dist/js/bootstrap.js"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\lib\bootstrap\dist\js\bootstrap.js"' (27b0a520)
+2017-07-17T22:57:00.4455376+01:00 0HL6DBQVDL4B7:00000003 [INF] Request finished in 2.7666ms 200 application/javascript (791a596a)
+2017-07-17T22:57:00.4599368+01:00 0HL6DBQVDL4B8:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:63577/js/site.js?v=ji3-IxbEzYWjzzLCGkF1KDjrT2jLbbrSYXw-AhMPNIA   (ca22a1cb)
+2017-07-17T22:57:00.4605362+01:00 0HL6DBQVDL4B8:00000003 [INF] Sending file. Request path: '"/js/site.js"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\js\site.js"' (27b0a520)
+2017-07-17T22:57:00.4614246+01:00 0HL6DBQVDL4B8:00000003 [INF] Request finished in 1.5209ms 200 application/javascript (791a596a)
+2017-07-17T22:57:00.4664127+01:00 0HL6DBQVDL4B7:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:63577/images/banner1.svg   (ca22a1cb)
+2017-07-17T22:57:00.4670175+01:00 0HL6DBQVDL4B7:00000004 [INF] Sending file. Request path: '"/images/banner1.svg"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\images\banner1.svg"' (27b0a520)
+2017-07-17T22:57:00.4684271+01:00 0HL6DBQVDL4B7:00000004 [INF] Request finished in 2.0171ms 200 image/svg+xml (791a596a)
+2017-07-17T22:57:00.4742227+01:00 0HL6DBQVDL4B8:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:63577/images/banner2.svg   (ca22a1cb)
+2017-07-17T22:57:00.4747923+01:00 0HL6DBQVDL4B8:00000004 [INF] Sending file. Request path: '"/images/banner2.svg"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\images\banner2.svg"' (27b0a520)
+2017-07-17T22:57:00.4756180+01:00 0HL6DBQVDL4B8:00000004 [INF] Request finished in 1.4103ms 200 image/svg+xml (791a596a)
+2017-07-17T22:57:00.4804322+01:00 0HL6DBQVDL4B7:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:63577/images/banner3.svg   (ca22a1cb)
+2017-07-17T22:57:00.4811837+01:00 0HL6DBQVDL4B7:00000005 [INF] Sending file. Request path: '"/images/banner3.svg"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\images\banner3.svg"' (27b0a520)
+2017-07-17T22:57:00.4825629+01:00 0HL6DBQVDL4B7:00000005 [INF] Request finished in 2.1436ms 200 image/svg+xml (791a596a)
+2017-07-17T22:57:00.4875908+01:00 0HL6DBQVDL4B8:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:63577/images/banner4.svg   (ca22a1cb)
+2017-07-17T22:57:00.4882794+01:00 0HL6DBQVDL4B8:00000005 [INF] Sending file. Request path: '"/images/banner4.svg"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\images\banner4.svg"' (27b0a520)
+2017-07-17T22:57:00.4906869+01:00 0HL6DBQVDL4B8:00000005 [INF] Request finished in 3.1383ms 200 image/svg+xml (791a596a)
+2017-07-17T22:57:00.5979704+01:00 0HL6DBQVDL4B7:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:63577/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2   (ca22a1cb)
+2017-07-17T22:57:00.5985657+01:00 0HL6DBQVDL4B7:00000006 [INF] Sending file. Request path: '"/lib/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\lib\bootstrap\dist\fonts\glyphicons-halflings-regular.woff2"' (27b0a520)
+2017-07-17T22:57:00.5998718+01:00 0HL6DBQVDL4B7:00000006 [INF] Request finished in 1.8998ms 200 font/woff2 (791a596a)
+2017-07-17T22:57:03.3688702+01:00 0HL6DBQVDL4B8:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies   (ca22a1cb)
+2017-07-17T22:57:03.3777173+01:00 0HL6DBQVDL4B8:00000006 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:57:03.4127660+01:00 0HL6DBQVDL4B8:00000006 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]" (0723d8ff)
+2017-07-17T22:57:03.7996398+01:00 0HL6DBQVDL4B8:00000006 [INF] Executing ViewResult, running view at path "/Views/Movies/Index.cshtml". (9707eebe)
+2017-07-17T22:57:03.8652240+01:00 0HL6DBQVDL4B8:00000006 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" in 488.0993ms (afa2e885)
+2017-07-17T22:57:03.8654733+01:00 0HL6DBQVDL4B8:00000006 [INF] Request finished in 496.654ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:57:08.1192735+01:00 0HL6DBQVDL4B7:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies/Edit/2   (ca22a1cb)
+2017-07-17T22:57:08.1598456+01:00 0HL6DBQVDL4B7:00000007 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" with arguments (["2"]) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:57:08.1862484+01:00 0HL6DBQVDL4B7:00000007 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]
+WHERE [m].[ID] = @__id_0" (0723d8ff)
+2017-07-17T22:57:08.3583280+01:00 0HL6DBQVDL4B7:00000007 [INF] Executing ViewResult, running view at path "/Views/Movies/Edit.cshtml". (9707eebe)
+2017-07-17T22:57:08.5973715+01:00 0HL6DBQVDL4B7:00000007 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" in 457.8976ms (afa2e885)
+2017-07-17T22:57:08.5976520+01:00 0HL6DBQVDL4B7:00000007 [INF] Request finished in 478.3962ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:57:08.6119702+01:00 0HL6DBQVDL4B8:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:63577/lib/jquery-validation/dist/jquery.validate.js   (ca22a1cb)
+2017-07-17T22:57:08.6120394+01:00 0HL6DBQVDL4B7:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:63577/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js   (ca22a1cb)
+2017-07-17T22:57:08.6126687+01:00 0HL6DBQVDL4B7:00000008 [INF] Sending file. Request path: '"/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js"' (27b0a520)
+2017-07-17T22:57:08.6126687+01:00 0HL6DBQVDL4B8:00000007 [INF] Sending file. Request path: '"/lib/jquery-validation/dist/jquery.validate.js"'. Physical path: '"C:\Users\vvenkata\Documents\Visual Studio 2017\Projects\MvcMoviePreview1\MvcMoviePreview1\wwwroot\lib\jquery-validation\dist\jquery.validate.js"' (27b0a520)
+2017-07-17T22:57:08.6261039+01:00 0HL6DBQVDL4B7:00000008 [INF] Request finished in 14.1507ms 200 application/javascript (791a596a)
+2017-07-17T22:57:08.6265827+01:00 0HL6DBQVDL4B8:00000007 [INF] Request finished in 14.6259ms 200 application/javascript (791a596a)
+2017-07-17T22:57:14.5816954+01:00 0HL6DBQVDL4B7:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies   (ca22a1cb)
+2017-07-17T22:57:14.5824425+01:00 0HL6DBQVDL4B7:00000009 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:57:14.5843506+01:00 0HL6DBQVDL4B7:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]" (0723d8ff)
+2017-07-17T22:57:14.5848515+01:00 0HL6DBQVDL4B7:00000009 [INF] Executing ViewResult, running view at path "/Views/Movies/Index.cshtml". (9707eebe)
+2017-07-17T22:57:14.5944919+01:00 0HL6DBQVDL4B7:00000009 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" in 12.1351ms (afa2e885)
+2017-07-17T22:57:14.5946819+01:00 0HL6DBQVDL4B7:00000009 [INF] Request finished in 13.0137ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:57:16.0679004+01:00 0HL6DBQVDL4B8:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies/Details/2   (ca22a1cb)
+2017-07-17T22:57:16.0747030+01:00 0HL6DBQVDL4B8:00000008 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Details (MvcMoviePreview1)" with arguments (["2"]) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:57:16.0775522+01:00 0HL6DBQVDL4B8:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]
+WHERE [m].[ID] = @__id_0" (0723d8ff)
+2017-07-17T22:57:16.3099384+01:00 0HL6DBQVDL4B8:00000008 [INF] Executing ViewResult, running view at path "/Views/Movies/Details.cshtml". (9707eebe)
+2017-07-17T22:57:16.3242018+01:00 0HL6DBQVDL4B8:00000008 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Details (MvcMoviePreview1)" in 249.9388ms (afa2e885)
+2017-07-17T22:57:16.3244049+01:00 0HL6DBQVDL4B8:00000008 [INF] Request finished in 256.5565ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:57:19.0100408+01:00 0HL6DBQVDL4B7:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies/Edit/2   (ca22a1cb)
+2017-07-17T22:57:19.0110075+01:00 0HL6DBQVDL4B7:0000000A [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" with arguments (["2"]) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:57:19.0123819+01:00 0HL6DBQVDL4B7:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]
+WHERE [m].[ID] = @__id_0" (0723d8ff)
+2017-07-17T22:57:19.0127494+01:00 0HL6DBQVDL4B7:0000000A [INF] Executing ViewResult, running view at path "/Views/Movies/Edit.cshtml". (9707eebe)
+2017-07-17T22:57:19.0156617+01:00 0HL6DBQVDL4B7:0000000A [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" in 4.8272ms (afa2e885)
+2017-07-17T22:57:19.0158972+01:00 0HL6DBQVDL4B7:0000000A [INF] Request finished in 5.8836ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:57:21.5527377+01:00 0HL6DBQVDL4B8:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies   (ca22a1cb)
+2017-07-17T22:57:21.5533805+01:00 0HL6DBQVDL4B8:00000009 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:57:21.5546100+01:00 0HL6DBQVDL4B8:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]" (0723d8ff)
+2017-07-17T22:57:21.5550267+01:00 0HL6DBQVDL4B8:00000009 [INF] Executing ViewResult, running view at path "/Views/Movies/Index.cshtml". (9707eebe)
+2017-07-17T22:57:21.5657089+01:00 0HL6DBQVDL4B8:00000009 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" in 12.4152ms (afa2e885)
+2017-07-17T22:57:21.5659048+01:00 0HL6DBQVDL4B8:00000009 [INF] Request finished in 13.1903ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:58:33.5043481+01:00  [INF] User profile is available. Using '"C:\Users\vvenkata\AppData\Local\ASP.NET\DataProtection-Keys"' as key repository and Windows DPAPI to encrypt keys at rest. (7ac5e29c)
+2017-07-17T22:58:33.7375680+01:00  [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Movie] AS [m])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2017-07-17T22:58:33.8468904+01:00 0HL6DBRS0HS6R:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:63577/   (ca22a1cb)
+2017-07-17T22:58:33.9137886+01:00 0HL6DBRS0HS6R:00000001 [INF] Executing action method "MvcMoviePreview1.Controllers.HomeController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:58:35.5244931+01:00 0HL6DBRS0HS6R:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2017-07-17T22:58:35.8278923+01:00 0HL6DBRS0HS6R:00000001 [INF] Executed action "MvcMoviePreview1.Controllers.HomeController.Index (MvcMoviePreview1)" in 1917.0618ms (afa2e885)
+2017-07-17T22:58:35.8344870+01:00 0HL6DBRS0HS6R:00000001 [INF] Request finished in 1988.4278ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:58:37.4296526+01:00 0HL6DBRS0HS6R:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies   (ca22a1cb)
+2017-07-17T22:58:37.4388812+01:00 0HL6DBRS0HS6R:00000002 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:58:37.4859872+01:00 0HL6DBRS0HS6R:00000002 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]" (0723d8ff)
+2017-07-17T22:58:37.7991443+01:00 0HL6DBRS0HS6R:00000002 [INF] Executing ViewResult, running view at path "/Views/Movies/Index.cshtml". (9707eebe)
+2017-07-17T22:58:37.8494966+01:00 0HL6DBRS0HS6R:00000002 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" in 411.1613ms (afa2e885)
+2017-07-17T22:58:37.8500047+01:00 0HL6DBRS0HS6R:00000002 [INF] Request finished in 420.4105ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:58:40.4631005+01:00 0HL6DBRS0HS6R:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies/Edit/2   (ca22a1cb)
+2017-07-17T22:58:40.4973813+01:00 0HL6DBRS0HS6R:00000003 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" with arguments (["2"]) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:58:40.5417159+01:00 0HL6DBRS0HS6R:00000003 [INF] Executed DbCommand ("24"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]
+WHERE [m].[ID] = @__id_0" (0723d8ff)
+2017-07-17T22:58:40.7377647+01:00 0HL6DBRS0HS6R:00000003 [INF] Executing ViewResult, running view at path "/Views/Movies/Edit.cshtml". (9707eebe)
+2017-07-17T22:58:40.9559185+01:00 0HL6DBRS0HS6R:00000003 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" in 475.2649ms (afa2e885)
+2017-07-17T22:58:40.9561046+01:00 0HL6DBRS0HS6R:00000003 [INF] Request finished in 493.0384ms 200 text/html; charset=utf-8 (791a596a)
+2017-07-17T22:58:50.6121076+01:00 0HL6DBRS0HS6R:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:63577/Movies/Edit/2 application/x-www-form-urlencoded 270 (ca22a1cb)
+2017-07-17T22:58:50.6499673+01:00 0HL6DBRS0HS6R:00000004 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" with arguments (["2", "MvcMoviePreview.Models.Movie"]) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:58:50.6822012+01:00 0HL6DBRS0HS6R:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@p4='?', @p0='?' (Size = 4000), @p1='?', @p2='?', @p3='?' (Size = 4000)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [Movie] SET [Genre] = @p0, [Price] = @p1, [ReleaseDate] = @p2, [Title] = @p3
+WHERE [ID] = @p4;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2017-07-17T22:58:50.6873769+01:00 0HL6DBRS0HS6R:00000004 [INF] Executing RedirectResult, redirecting to "/Movies". (d98d540e)
+2017-07-17T22:58:50.6874788+01:00 0HL6DBRS0HS6R:00000004 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Edit (MvcMoviePreview1)" in 65.8675ms (afa2e885)
+2017-07-17T22:58:50.6885566+01:00 0HL6DBRS0HS6R:00000004 [INF] Request finished in 76.4943ms 302  (791a596a)
+2017-07-17T22:58:50.6953410+01:00 0HL6DBRS0HS6R:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:63577/Movies   (ca22a1cb)
+2017-07-17T22:58:50.6958865+01:00 0HL6DBRS0HS6R:00000005 [INF] Executing action method "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2017-07-17T22:58:50.6972045+01:00 0HL6DBRS0HS6R:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [m].[ID], [m].[Genre], [m].[Price], [m].[ReleaseDate], [m].[Title]
+FROM [Movie] AS [m]" (0723d8ff)
+2017-07-17T22:58:50.6974526+01:00 0HL6DBRS0HS6R:00000005 [INF] Executing ViewResult, running view at path "/Views/Movies/Index.cshtml". (9707eebe)
+2017-07-17T22:58:50.7043898+01:00 0HL6DBRS0HS6R:00000005 [INF] Executed action "MvcMoviePreview1.Controllers.MoviesController.Index (MvcMoviePreview1)" in 8.5491ms (afa2e885)
+2017-07-17T22:58:50.7045949+01:00 0HL6DBRS0HS6R:00000005 [INF] Request finished in 9.2792ms 200 text/html; charset=utf-8 (791a596a)
